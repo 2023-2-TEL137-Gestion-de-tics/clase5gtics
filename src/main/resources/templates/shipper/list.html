@@ -27,7 +27,7 @@
                     </tr>
                     <tr th:each="shipper, info : ${shipperList}">
                         <td th:text="${info.index + 1}"></td>
-                        <td th:text="${shipper.companyName}"></td>
+                        <td th:text="${shipper.companyname}"></td>
                         <td th:text="${shipper.phone}"></td>
                         <td><a class="btn btn-primary" th:href="@{'/shipper/edit' + '?id=' + ${shipper.shipperId}}">Editar</a>
                         </td>

@@ -13,9 +13,9 @@ public class Shipper {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "shipperid")
-    private int shipperId;
+    private Integer shipperId;
     @Column(name = "companyname", nullable = false)
-    private String companyName;
+    private String companyname;
     private String phone;
 
 }

@@ -10,9 +10,9 @@ import java.util.List;
 @Repository
 public interface ShipperRepository extends JpaRepository<Shipper, Integer> {
 
-    List<Shipper> findByCompanyName(String nombre);
+    List<Shipper> findByCompanyname(String nombre);
 
-    @Query(value = "select * from shippers where CompanyName = ?1",
+    @Query(value = "select * from shippers where Companyname = ?1",
             nativeQuery = true)
     List<Shipper> buscarTransPorCompName(String nombre);
 
