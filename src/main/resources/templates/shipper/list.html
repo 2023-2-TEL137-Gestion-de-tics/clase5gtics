@@ -14,6 +14,9 @@
                     <a class="btn btn-primary" th:href="@{'/shipper/new'}">Nuevo Transportista</a>
                     <a class="btn btn-secondary ms-auto" th:href="@{'/'}">Regresar</a>
                 </div>
+                <div class="alert alert-primary" role="alert" th:if="${msg != null}" th:text="${msg}">
+                    A simple primary alert—check it out!
+                </div>
                 <form method="post" th:action="@{/shipper/BuscarTransportistas}">
                     <input name="searchField" class="form-control mb-3" type="text" placeholder="Search"/>
                 </form>

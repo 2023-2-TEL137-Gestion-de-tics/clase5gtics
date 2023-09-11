@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 import java.util.Optional;
@@ -37,7 +38,10 @@ public class ShipperController {
     }
 
     @PostMapping("/save")
-    public String guardarNuevoTransportista(Shipper shipper) {
+    public String guardarNuevoTransportista(Shipper shipper, RedirectAttributes attr) {
+        String estado = shipper.getShipperId() == null ? "creado" : "actualizado";
+        attr.addFlashAttribute("msg", "Transportista " + estado + " correctamente");
+
         shipperRepository.save(shipper);
         return "redirect:/shipper/list";
     }
@@ -58,12 +62,15 @@ public class ShipperController {
     }
 
     @GetMapping("/delete")
-    public String borrarTransportista(@RequestParam("id") int id) {
+    public String borrarTransportista(@RequestParam("id") int id, RedirectAttributes attributes) {
 
         Optional<Shipper> optShipper = shipperRepository.findById(id);
 
         if (optShipper.isPresent()) {
+            Shipper shipper = optShipper.get();
+            String shipperName = shipper.getCompanyname();
             shipperRepository.deleteById(id);
+            attributes.addFlashAttribute("msg", "Transportista " + shipperName + " borrado exitosamente");
         }
         return "redirect:/shipper/list";
 
